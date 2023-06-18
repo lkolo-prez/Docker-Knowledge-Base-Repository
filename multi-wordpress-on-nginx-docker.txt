@@ -1,0 +1,14 @@
+
+
+docker run --name nginx-proxy --net wpnet -p 80:80 -p 443:443 -v ~/certs:/etc/nginx/certs -v /etc/nginx/vhost.d -v /usr/share/nginx/html -v /var/run/docker.sock:/tmp/docker.sock:ro --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy -d --restart always jwilder/nginx-proxy
+
+docker run --name letsencrypt-nginx-proxy-companion --net wpnet -v ~/certs:/etc/nginx/certs:rw -v /var/run/docker.sock:/var/run/docker.sock:ro --volumes-from nginx-proxy -d --restart always jrcs/letsencrypt-nginx-proxy-companion
+
+docker run --name mysqldb01 --net wpnet -v mysqldb01:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Jasio -e MYSQL_DATABASE=db1 -e MYSQL_USER=db1user -e MYSQL_PASSWORD=Karol -d --restart always mysql:5.7
+
+##kwestia haseł 
+
+docker run --name wptest1 --net wpnet -v wptest1:/var/www/html/ -v ~/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini -e WORDPRESS_DB_HOST=mysqldb01:3306 -e WORDPRESS_DB_NAME=db1 -e WORDPRESS_DB_USER=db1user -e WORDPRESS_DB_PASSWORD=Karol -d --restart always wordpress
+
+
+-e VIRTUAL_HOST=www.devopsruntime.com -e LETSENCRYPT_HOST=www. -e LETSENCRYPT_EMAIL=emailaddress@yourdomain.local

@@ -1,0 +1,12 @@
+{
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/wordpress-seo":"*",
+        "wpackagist-plugin/wp-super-cache":"*"
+    }
+}

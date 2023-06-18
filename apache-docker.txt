@@ -1,0 +1,26 @@
+befor install docker and docker-compose
+
+mkdir docker-apache
+
+cd /docker-apache
+
+mkdir html
+
+mcedit dockerfile 	
+	FROM httpd:2.4	
+	COPY ./html/ /usr/local/apache2/htdocs/
+
+sudo docker images
+
+sudo docker run -dit --name apache -p 80:80 --mount src="$(pwd)/html",target=/usr/local/apache2/htdocs,type=bind httpd
+
+sudo docker rm -f apache
+
+sudo docker run -dit --rm --name apache -p 80:80 --mount src="$(pwd)/html",target=/usr/local/apache2/htdocs,type=bind httpd
+
+cd /docker-apache/html
+
+touch index.html
+
+mcedit index.html 
+	//place for creat website

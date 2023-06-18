@@ -1,0 +1,1 @@
+docker run --name mysql-test-8 -p 3306:3306` -e MYSQL_ROOT_PASSWORD=ZAQwsx1234 ` -e MYSQL_DATABASE=db_test ` -e MYSQL_USER=db_testuser ` -e MYSQL_PASSWORD=ZAQwsx1234 ` -d --restart always mysql:latest
